@@ -1,12 +1,18 @@
 import React from 'react';
 import List from "./components/List/List";
+import AddButtonList from "./components/AddButtonList/AddButtonList";
+
+import DB from './assets/db.json'
 
 function App() {
+    const [state, setState] = React.useState("Hello, World!");
     return (
         <div className="todo">
 
             <div className="todo__sidebar">
-                <List items={[
+                <List
+                    state={state}
+                    items={[
                     {
                         icon: <svg width="14"
                                    height="12"
@@ -20,7 +26,8 @@ function App() {
                         name: "Все задачи",
                         active: true
                     }
-                ]}/>
+                ]}
+                />
                 <List items={[
                     {
                         color: "green",
@@ -34,7 +41,9 @@ function App() {
                         color: "pink",
                         name: "Фильмы и сериалы"
                     }
-                ]}/>
+                ]} isRemovable
+                />
+                <AddButtonList colors={DB.colors} />
             </div>
 
             <div className="todo__tasks">
