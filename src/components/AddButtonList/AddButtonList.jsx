@@ -7,10 +7,30 @@ import closeSvg from '../../assets/img/close.svg'
 import './AddButtonList.scss';
 
 
-const AddButtonList = ({colors}) => {
+const AddButtonList = ({ colors, onAdd }) => {
     const [visiblePopup, setVisiblePopup] = useState(false);
     const [seletedColor, selectColor] = useState(colors[0].id);
-    console.log(seletedColor)
+    const [inputValue, setInputValue] = useState('');
+
+    const onClose = () => {
+        setVisiblePopup(false)
+        setInputValue('')
+        selectColor(colors[0].id)
+    }
+
+    const addList = () => {
+        if(!inputValue){
+            alert("Введите название списка")
+            return;
+        }
+        const color = colors.filter(c => c.id === seletedColor)[0].name;
+        onAdd({
+            "id": Math.random(),
+            "name": inputValue,
+            color
+        })
+        onClose()
+    }
 
     return (
         <div className="add-list">
@@ -29,10 +49,22 @@ const AddButtonList = ({colors}) => {
             ]}
             />
             {visiblePopup && <div className="add-list__popup">
-                <img onClick={() => {setVisiblePopup(false)}} src={closeSvg} alt="Close Button" className="add-list__popup-close-btn"/>
-                <input className="field" type="text" placeholder="Название списка"/>
-                <div className="add-list__popup-colors">
+                <img
+                    onClick={onClose}
+                    src={closeSvg}
+                    alt="Close Button"
+                    className="add-list__popup-close-btn"
+                />
 
+                <input
+                    value={inputValue}
+                    className="field"
+                    type="text"
+                    placeholder="Название списка"
+                    onChange={e => setInputValue(e.target.value)}
+                />
+
+                <div className="add-list__popup-colors">
                     {
                         colors.map(color => (
                             <Badge
@@ -44,7 +76,7 @@ const AddButtonList = ({colors}) => {
                             ))
                     }
                 </div>
-                <button className="button">Добавить</button>
+                <button onClick={addList} className="button">Добавить</button>
             </div>}
         </div>
     );
