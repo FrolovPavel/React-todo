@@ -1,4 +1,6 @@
 .list {
+  $self: &;
+
   margin-bottom: 30px;
 
   &__add-button {
@@ -9,11 +11,30 @@
     }
   }
 
+  &__remove-icon {
+    opacity: 0;
+
+  }
+
   li {
     display: flex;
     align-items: center;
     padding: 10px 12px;
     cursor: pointer;
+    transition: background-color 0.1s ease-in-out;
+
+    &:hover #{$self}__remove-icon {
+      opacity: .2;
+    }
+
+    #{$self}__remove-icon {
+      opacity: 0;
+      transition: opacity 0.1s ease-in-out;
+
+      &:hover {
+        opacity: .8;
+      }
+    }
 
     i {
       display: inline-flex;
@@ -36,6 +57,9 @@
       left: 5px;
     }
 
+    span {
+      flex: 1;
+    }
 
   }
 }
