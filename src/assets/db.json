@@ -24,6 +24,36 @@
       "id": 5,
       "name": "Личное",
       "colorId": 1
+    },
+    {
+      "name": "pines 2",
+      "colorId": 1,
+      "id": 7
+    },
+    {
+      "name": "test",
+      "colorId": 1,
+      "id": 8
+    },
+    {
+      "name": "asd",
+      "colorId": 5,
+      "id": 9
+    },
+    {
+      "name": "d",
+      "colorId": 3,
+      "id": 10
+    },
+    {
+      "name": "qwd",
+      "colorId": 7,
+      "id": 11
+    },
+    {
+      "name": "d",
+      "colorId": 4,
+      "id": 12
     }
   ],
   "tasks": [
